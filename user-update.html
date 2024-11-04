@@ -1,0 +1,28 @@
+{% extends "shopapp/base.html" %}
+
+{% block title %}
+    User Details 
+{% endblock title %}
+
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit">Upload</button>
+    </form>
+    {% comment %} <div>
+        <div>
+            <p>ID: {{ user.id }}</p>
+            <p>Имя пользователя: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Статус: {{ user.is_active|yesno:"Активен,Неактивен" }}</p><!-- Пример использования фильтра yesno -->
+            {% if user.profile.avatar %}
+              <img src="{{user.profile.avatar.url}}">
+            {% endif %}
+            <p>Bio: {{user.profile.bio}}</p>
+        </div>
+    </p> {% endcomment %}
+{% endblock body %}
+

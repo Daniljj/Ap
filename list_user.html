@@ -1,0 +1,27 @@
+{% extends "myauth/base.html" %}
+
+{% block title %}
+  Login
+{% endblock title %}
+
+{% block body %}
+<body>
+  <h1>Список пользователей</h1>
+
+    {% for user in users %}
+      <div>
+      <p>ID: {{ user.id }}</p>
+      <p><a href="{% url "myauth:user_update" pk=user.id %}">Username: {{ user.username }}</a></p>
+      <p>Имя пользователя: {{ user.username }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Статус: {{ user.is_active|yesno:"Активен,Неактивен" }}</p><!-- Пример использования фильтра yesno -->
+      <p>Bio: {{user.profile.bio}}</p>
+      {% if user.profile.avatar %}
+        <img src="{{user.profile.avatar.url}}">
+      {% endif %}
+    </div>
+    {% endfor %}
+
+</body>
+{% endblock body %}
+
